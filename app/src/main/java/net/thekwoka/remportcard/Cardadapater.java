@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 public class Cardadapater extends ArrayAdapter<Reportcard> {
 
-    public Cardadapater(Activity context, ArrayList<Reportcard> reportcards){
-        super(context,0,reportcards);
+    //Maker Method
+    public Cardadapater(Activity context, ArrayList<Reportcard> reportcards) {
+        super(context, 0, reportcards);
     }
 
 
@@ -23,43 +24,50 @@ public class Cardadapater extends ArrayAdapter<Reportcard> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.gradeshow, parent, false);
         }
 
-        // Get the {@link AndroidFlavor} object located at this position in the list
+        // Get the object located at this position in the list
         Reportcard currentReport = getItem(position);
 
-        // Find the TextView in the list_item.xml layout with the ID version_name
+        // Find the TextView in the gradeshow.xml to place student name
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.NameSpace);
-        // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
         nameTextView.setText(currentReport.getName());
 
-        // Find the TextView in the list_item.xml layout with the ID version_number
+        // Find the TextView in the gradeshow.xml to place letter grade
         TextView gradeTextView = (TextView) listItemView.findViewById(R.id.FinalGrade);
-        // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         gradeTextView.setText(currentReport.getTotalGrade());
 
+        // Find the TextView in the gradeshow.xml to place the English Score
         TextView engTextView = (TextView) listItemView.findViewById(R.id.engScore);
+        //Convert English score to String
         String ENG = String.valueOf(currentReport.getENG());
+        // set this text on the number TextView
         engTextView.setText(ENG);
+
+        // Find the TextView in the gradeshow.xml to place the Korean Score
         TextView korTextView = (TextView) listItemView.findViewById(R.id.korScore);
+        //Convert English score to String
         String KOR = String.valueOf(currentReport.getKOR());
+        // set this text on the number TextView
         korTextView.setText(KOR);
+
+        // Find the TextView in the gradeshow.xml to place the Business Score
         TextView busTextView = (TextView) listItemView.findViewById(R.id.busScore);
+        //Convert English score to String
         String BUS = String.valueOf(currentReport.getBUS());
+        // set this text on the number TextView
         busTextView.setText(BUS);
 
 
-
-        // Return the whole list item layout (containing 2 TextViews and an ImageView)
+        // Return the whole list item layout
         // so that it can be shown in the ListView
         return listItemView;
     }
-
 
 
 }
